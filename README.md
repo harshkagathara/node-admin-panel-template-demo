@@ -10,3 +10,9 @@ Seeding  <br>
 Join query <br>
 Delete Cascade <br>
 topics of Node. 
+
+```
+ npm install
+ npm run seed
+ npm run dev
+```
