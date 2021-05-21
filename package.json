@@ -8,8 +8,12 @@
     "dev": "nodemon index.js",
     "seed": "nodemon App/Seeding/data-seed.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node datatable","node forgot password","node delete cascade","node send email","node image upload"],
+    "author": {
+    "name": "Harsh Kagathara",
+    "email": "harshkagu29@gmail.com",
+    "url": "https://infusion-infotech.com/"
+  },
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
