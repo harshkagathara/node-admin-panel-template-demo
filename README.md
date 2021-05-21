@@ -1,12 +1,12 @@
 # node-full-crud-demo
 #This module includes
-Foreign key  
-Forgot password
-Send mail
-Datatable
-Ajax
-Image & Upload & Dalete
-Seeding 
-Join query
+Foreign key  <br> 
+Forgot password <br>
+Send mail <br>
+Datatable <br>
+Ajax <br>
+Image & Upload & Dalete <br>
+Seeding  <br>
+Join query <br>
 DELETE CASCADE
 topics of Node. 
