@@ -8,5 +8,5 @@ Ajax <br>
 Image & Upload & Dalete <br>
 Seeding  <br>
 Join query <br>
-DELETE CASCADE <br>
+Delete Cascade <br>
 topics of Node. 
