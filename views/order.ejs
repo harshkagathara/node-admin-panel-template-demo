@@ -1,0 +1,51 @@
+<%- include('layouts/header'); -%>
+    <%- include('layouts/navber'); -%>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>List of Order</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr class="text-center">
+                            <th> Sr.No</th>
+                            <th>Order Id</th>
+                            <th>Order </th>
+                            <th>Amount</th>
+                            <th>Quantity</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var i=0; i<Orders.length;i++) { %>
+                            <tr class="text-center">
+                              <td><%= i+1; %></td>
+                              <td><%= Orders[i].OrderId %></td>
+                              <td><%= Orders[i].OrderName %></td> 
+                              <td><%= Orders[i].OrderAmount %></td>
+                              <td><%= Orders[i].OrderQty %></td>
+                              <td><div class="badge badge-success badge-shadow">Completed</div> </td>
+                              <td><a href="order/pdf" class="btn btn-primary">Detail</a></td>
+                            </tr>
+                           <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+  <%- include('layouts/footer'); -%>
+
+

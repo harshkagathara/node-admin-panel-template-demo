@@ -1,0 +1,39 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="addon_categoty_save" method="POST">
+                            <div class="card-header">
+                                <h4>Add Category</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Extra Category Name </label>
+                                    <input type=text class="form-control" name=name id=name  value=""  required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Type</label>
+                                    <select name="type" class=" form-control">
+                                        <option value="SINGLE"> SINGLE</option>
+                                        <option value="MULTIPLE">MULTIPLE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include('layouts/footer'); -%>

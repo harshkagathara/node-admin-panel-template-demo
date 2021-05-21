@@ -1,0 +1,56 @@
+<%- include('layouts/header'); -%>
+    <%- include('layouts/navber'); -%>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>Restaurant  List</h4>
+                   <a href="/restaurant_create" class="ml-auto"><button class="btn btn-info " style="border-radius: 5px;"><i class="fas fa-plus"></i> Add More</button></a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr  class="text-center">
+                            <th>#Sr.No</th>
+                            <th>Image</th>
+                            <th>Restaurant Name</th>
+                            <th>Owner Name</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <%  for(var i = 0; i < restaurant.length; i++) {
+                             %>
+                            <tr class="text-center">
+                            <td><%= i+1; %></td>
+                            <td> <img alt="image" src="/uploads/Restaurant/<%=restaurant[i].image%>" width="105px" height="55px"></td>
+                            <td><%= restaurant[i].resName %></td>
+                            <td><%= restaurant[i].userFname%> <%= restaurant[i].userLname%></td>
+                           
+                            <td><a href="restaurant_edit/<%=restaurant[i].res_id%>" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
+                            <td><a href="restaurant_delete/<%=restaurant[i].res_id%>/<%=restaurant[i].image%>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                          </tr>
+                         <% } %>
+                        
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      
+      
+
+  <%- include('layouts/footer'); -%>
+
+

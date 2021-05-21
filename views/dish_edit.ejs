@@ -1,0 +1,93 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="dish_update/<%= dish._id %>/<%= dish.image %>" method="POST" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Edit Dish</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Select Restaurant  </label>
+                                    <select name="restaurant_id" class=" form-control">
+                                        <% for(var i=0; i<restaurant.length;i++) { %>
+                                            <option value="<%-restaurant[i]._id  %>" <%= restaurant[i]._id.toString() == dish.restaurant_id.toString() ? 'selected' : '' %> ><%= restaurant[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dish Name </label>
+                                    <input type=text class="form-control" name=name id=name  value="<%= dish.name %>"  required/>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label>Dish Description  </label>
+                                    <textarea class="form-control" name="description"><%= dish.description %></textarea>  
+                                </div>
+                                <div class="form-group">
+                                    <label>Price </label>
+                                    <input type=text class="form-control" name=price value="<%= dish.price %>">
+                                </div>
+                              
+                                
+                                <div class="form-group">
+                                    <label>Discount Price   </label>
+                                    <input type="text" class="form-control" name="discount_price" value="<%= dish.discount_price %>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Dish Category </label>
+                                    <select name="dish_category_id" class=" form-control">
+                                        <% for(var i=0; i<dishCategory.length;i++) { %>
+                                           <option value="<%-dishCategory[i]._id  %>" <%= dishCategory[i]._id.toString() == dish.dish_category_id.toString() ? 'selected' : '' %>  ><%= dishCategory[i].name %></option> 
+                                        <% } %> -->
+                                    </select>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label>Extras  </label>
+                                    <select name="addons_category_id" class=" form-control">
+                                        <% for(var i=0; i<addonCategory.length;i++) { %>
+                                            <option value="<%=addonCategory[i]._id %>" <%= addonCategory[i]._id.toString() == dish.addons_category_id.toString() ? 'selected' : '' %>  %>><%= addonCategory[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dish Image   </label>
+                                    <input type="file" class="form-control" name="image" onchange="showImage(this)"   accept=image/*/>
+                                </div>
+                                <input type="hidden" class="form-control"id="imgchecker" name="imgchecker" value=""/>
+                                <img src="/uploads/Dish/<%=dish.image %>" width="140px" height="85px" id="show" style="border-radius: 7px; border: solid 2px black;">
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    function showImage(input){
+        var file=$("input[type=file]").get(0).files[0];
+        if(file)
+        {
+            var reader = new FileReader();
+            reader.onload = function(){
+                $('#show').attr("src",reader.result).attr("width",'150px').attr("height",'150px');
+                $('#imgchecker').attr("value","image");
+    
+            }
+            reader.readAsDataURL(file); 
+        }
+      }
+    </script>
+<%- include('layouts/footer'); -%>

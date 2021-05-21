@@ -1,0 +1,67 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="coupon_update/<%= coupon._id %>" method="POST">
+                            <div class="card-header">
+                                <h4>Edit Coupon</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Coupon Name </label>
+                                    <input type=text class="form-control" name=name id=name  value="<%= coupon.name %>"  required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Coupon Description </label>
+                                  <textarea name="description" class="form-control"><%= coupon.description %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Select Restaurant</label>
+                                    <select class="form-control" name="restaurant_id">
+                                        <% for(var i=0; i<restaurant.length;i++) { %>
+                                            <option value="<%-restaurant[i]._id  %>" <%= restaurant[i]._id.toString() == coupon.restaurant_id.toString() ? 'selected' : '' %>  ><%= restaurant[i].name %></option>   
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Coupon Code </label>
+                                    <input type="text" class="form-control"name=coupon_code  required  value="<%= coupon.name %>" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Discount Type </label>
+                                    <select name=discount_type class="form-control" >
+                                        <option value="FIXED" <%= 'FIXED' ==coupon.discount_type.toString() ? 'selected' : '' %> >Fixed Amount Discount</option> 
+                                        <option value="PERCENTAGE" <%= 'PERCENTAGE' ==coupon.discount_type.toString() ? 'selected' : '' %> >Percentage Discount</option> 
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dicount Price</label>
+                                    <input type=number class="form-control" name=discount id=discount  value="<%= coupon.discount %>"    step="1"   />
+                                </div>
+                                <div class="form-group">
+                                    <label>Expiry Date </label>
+                                    <input type="date" name="expiry_date" class="form-control" data-inputmask-alias="datetime" value="<%= coupon.expiry_date  %>">
+                                </div>
+                                <div class="form-group">
+                                    <label>Max. Usage </label>
+                                    <input type=number class="form-control" name=max_usage id=max_usage  value="<%= coupon.max_usage %>"    step="1"   />
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include('layouts/footer'); -%>

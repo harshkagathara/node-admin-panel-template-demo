@@ -1,0 +1,62 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="dish_category_update/<%=dishCategory._id%>/<%= dishCategory.image %>" method="POST" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Edit Dish Category</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Select Restaurant  </label>
+                                    <select name="restaurant_id" class=" form-control">
+                                        <% for(var i=0; i<restaurant.length;i++) { %>
+                                            <option value="<%-restaurant[i]._id  %>"><%= restaurant[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Category Name </label>
+                                    <input type=text class="form-control" name=name id=name  value="<%=dishCategory.name%>"  required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Image </label>
+                                    <input type="file" class="form-control" name="image" onchange="showImage(this)"   accept=image/*/>
+                                </div>
+                                <img src="/uploads/<%=dishCategory.image %>" width="140px" height="85px" id="show" style="border-radius: 7px; border: solid 2px black;">
+                                <input type="hidden" class="form-control"id="imgchecker" name="imgchecker" value=""/>
+                           
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    function showImage(input){
+        var file=$("input[type=file]").get(0).files[0];
+        if(file)
+        {
+            var reader = new FileReader();
+            reader.onload = function(){
+                $('#show').attr("src",reader.result).attr("width",'150px').attr("height",'150px');
+                $('#imgchecker').attr("value","image");
+    
+            }
+            reader.readAsDataURL(file); 
+        }
+      }
+    </script>
+<%- include('layouts/footer'); -%>

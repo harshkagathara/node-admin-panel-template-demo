@@ -1,0 +1,56 @@
+<%- include('layouts/header'); -%>
+    <%- include('layouts/navber'); -%>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>List of Addons</h4>
+                   <a href="/addon_create" class="ml-auto"><button class="btn btn-info " style="border-radius: 5px;"><i class="fas fa-plus"></i> Add More</button></a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr class="text-center">
+                            <th>Sr.No</th>
+                            <th>Addon Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var i=0; i<AddonsData.length;i++) { %>
+                          <tr class="text-center">
+                            <td><%= i+1; %></td>
+                            <td><%= AddonsData[i].AddonName %></td>
+                            <td><%= AddonsData[i].AddonCateName %></td>
+                            <td><%= AddonsData[i].price %></td>
+                            <td><a href="addon_edit/<%=AddonsData[i].Addon_id%>" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
+                            <td><a href="addon_delete/<%=AddonsData[i].Addon_id%>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                          </tr>
+                         <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            
+          </div>
+        </section>
+        
+      </div>
+
+      
+
+  <%- include('layouts/footer'); -%>
+
+

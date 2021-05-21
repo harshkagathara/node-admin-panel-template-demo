@@ -1,0 +1,68 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="coupon_save" method="POST">
+                            <div class="card-header">
+                                <h4>Add Coupon</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Coupon Name </label>
+                                    <input type=text class="form-control" name=name id=name  value=""  required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Coupon Description </label>
+                                  <textarea name="description" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Select Restaurant</label>
+                                    <select class="form-control" name="restaurant_id">
+                                        <% for(var i=0; i<restaurant.length;i++) { %>
+                                            <option value="<%-restaurant[i]._id  %>"><%= restaurant[i].name %></option>
+                                          
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Coupon Code </label>
+                                    <input type="text" class="form-control"name=coupon_code  required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Discount Type </label>
+                                    <select name=discount_type class="form-control" >
+                                        <option value="FIXED">Fixed Amount Discount</option>
+                                        <option value="PERCENTAGE">Percentage Discount</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dicount Price</label>
+                                    <input type=number class="form-control" name=discount id=discount value=""   step="1"   />
+                                </div>
+                                <div class="form-group">
+                                    <label>Expiry Date </label>
+                                    <input type="date" class="form-control" name="expiry_date">
+                                </div>
+                                <div class="form-group">
+                                    <label>Max. Usage </label>
+                                    <input type=number class="form-control" name=max_usage id=max_usage value=""   step="1"   />
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include('layouts/footer'); -%>

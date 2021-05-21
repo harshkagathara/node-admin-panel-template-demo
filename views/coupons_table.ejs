@@ -1,0 +1,60 @@
+<%- include('layouts/header'); -%>
+    <%- include('layouts/navber'); -%>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>List of Coupons</h4>
+                   <a href="/coupons_create" class="ml-auto"><button class="btn btn-info " style="border-radius: 5px;"><i class="fas fa-plus"></i> Add More</button></a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                          <tr  class="text-center">
+                            <th>Sr.No</th>
+                            <th>Coupon Name</th>
+                            <th>Restaurant Name</th>
+                            <th>Code</th>
+                            <th>Type</th>
+                            <th>Expiry Date</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var i=0; i<CoupnData.length;i++) { %>
+                          <tr  class="text-center">
+                            <td><%= i+1; %></td>
+                            <td><%= CoupnData[i].CoupName %></td>
+                            <td><%= CoupnData[i].ResName %></td>
+                            <td><%= CoupnData[i].couponCode %></td>
+                            <td><%= CoupnData[i].discount_type %></td>
+                            <td><%= CoupnData[i].expiry_date %></td>
+                            <td><a href="coupon_edit/<%= CoupnData[i].coupn_id %>" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
+                            <td><a href="coupon_delete/<%= CoupnData[i].coupn_id %>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                          </tr>
+                         <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            
+          </div>
+        </section>
+        
+      </div>
+
+      
+
+  <%- include('layouts/footer'); -%>
+
+

@@ -1,0 +1,77 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="dish_save" method="POST" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Add Dish</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Select Restaurant  </label>
+                                    <select name="restaurant_id" class=" form-control">
+                                        <% for(var i=0; i<restaurant.length;i++) { %>
+                                            <option value="<%-restaurant[i]._id  %>"><%= restaurant[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dish Name </label>
+                                    <input type=text class="form-control" name=name id=name  value=""  required/>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label>Dish Description  </label>
+                                    <textarea class="form-control" name="description"></textarea>  
+                                </div>
+                                <div class="form-group">
+                                    <label>Price </label>
+                                    <input type=text class="form-control" name=price>
+                                </div>
+                              
+                                
+                                <div class="form-group">
+                                    <label>Discount Price   </label>
+                                    <input type="text" class="form-control" name="discount_price">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Dish Category </label>
+                                    <select name="dish_category_id" class=" form-control">
+                                        <% for(var i=0; i<dishCategory.length;i++) { %>
+                                            <option value="<%-dishCategory[i]._id  %>"><%= dishCategory[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                              
+                                <div class="form-group">
+                                    <label>Extras  </label>
+                                    <select name="addons_category_id" class=" form-control">
+                                        <% for(var i=0; i<addonCategory.length;i++) { %>
+                                            <option value="<%-addonCategory[i]._id  %>"><%= addonCategory[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dish Image   </label>
+                                    <input type="file" class="form-control" name="image">
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include('layouts/footer'); -%>

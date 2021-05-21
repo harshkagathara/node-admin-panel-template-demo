@@ -1,0 +1,87 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="restaurant_update/<%= restaurant._id %>/<%= restaurant.image %>" method="POST" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Edit Restaurant</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Name </label>
+                                    <input type="text" class="form-control" name="name" required value="<%= restaurant.name %>"/>
+                                </div>
+                               
+                                <div class="form-group">
+                                    <label>Restaurant Owner</label>
+                                    <select class="form-control" name="user_id">
+                                        <% for(var i=0; i<users.length;i++) { %>
+                                            <option value="<%-users[i]._id  %>"><%= users[i].frist_name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone </label>
+                                    <input type="text" class="form-control" name="phone" value="<%= restaurant.phone %>"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email </label>
+                                    <input type="email" class="form-control" name="email" value="<%= restaurant.email %>"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Cuisine </label>
+                                    <select class="form-control" name="cuisine">
+                                        <option>a</option>
+                                        <option>i</option>
+                                        <option>s</option>
+                                    </select>
+                                </div>
+                                 <div class="form-group">
+                                    <label>Description </label>
+                                    <input type="text" class="form-control" name="description" value="<%= restaurant.description %>"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address </label>
+                                    <textarea class="form-control" name="address"><%= restaurant.address %></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Image </label>
+                                    <input type="file" class="form-control" name="image" onchange="showImage(this)"   accept=image/*/>
+                                </div>
+                                <img src="/uploads/Restaurant/<%=restaurant.image %>" width="140px" height="85px" id="show" style="border-radius: 7px; border: solid 2px black;">
+                                <input type="hidden" class="form-control"id="imgchecker" name="imgchecker" value=""/>
+                           
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function showImage(input){
+    var file=$("input[type=file]").get(0).files[0];
+    if(file)
+    {
+        var reader = new FileReader();
+        reader.onload = function(){
+            $('#show').attr("src",reader.result).attr("width",'150px').attr("height",'150px');
+            $('#imgchecker').attr("value","image");
+
+        }
+        reader.readAsDataURL(file); 
+    }
+  }
+</script>
+<%- include('layouts/footer'); -%>

@@ -1,0 +1,108 @@
+<%- include('layouts/auth-header'); -%>
+<body>
+    <div class="loader"></div>
+    <div id="app">
+      <section class="section">
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+              <div class="card card-primary">
+                <div class="card-header">
+                  <h4>Login</h4>
+                </div>
+                <div class="card-body">
+                  <form method="POST" id="form_res" class="needs-validation" novalidate="">
+                    <div id="check"> </div>
+                    <div class="form-group">
+                      <label for="email">Email</label>
+                      <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                      <div class="invalid-feedback">
+                        Please fill in your email
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="d-block">
+                        <label for="password" class="control-label">Password</label>
+                        <div class="float-right">
+                          <a href="/auth-forgot-password" class="text-small">
+                            Forgot Password?
+                          </a>
+                        </div>
+                      </div>
+                      <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
+                      <div class="invalid-feedback">
+                        please fill in your password
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                        <label class="custom-control-label" for="remember-me">Remember Me</label>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                        Login
+                      </button>
+                    </div>
+                  </form>
+                  <div class="text-center mt-4 mb-3">
+                    <div class="text-job text-muted">Login With Social</div>
+                  </div>
+                  <div class="row sm-gutters">
+                    <div class="col-6">
+                      <a class="btn btn-block btn-social btn-facebook">
+                        <span class="fab fa-facebook"></span> Facebook
+                      </a>
+                    </div>
+                    <div class="col-6">
+                      <a class="btn btn-block btn-social btn-twitter">
+                        <span class="fab fa-twitter"></span> Twitter
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5 text-muted text-center">
+                Don't have an account? <a href="/auth-register">Create One</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#form_res").submit(function(event) {
+          event.preventDefault();
+          $.ajax({
+            type: 'POST',
+            url: '/auth-check',
+            data: $('#form_res').serialize(),
+            dataType: "json",
+            success: function(response) {
+              $('#form_res')[0].reset();
+              if(response.Message == "Success!") {
+                 window.location.href = "/";
+            }
+            else if (response.Message == "Wrong password!"){
+              document.getElementById("check").innerHTML = '<div class="alert alert-danger alert-dismissible" id="check"><button type="button" class="close" data-dismiss="alert">&times;</button>  Wrong password! </div>';
+              setTimeout(function() {
+                document.getElementById("check").innerHTML = "";
+              }, 3000);
+            }
+            else if(response.Message == "This Email Is not regestered!"){
+      
+              document.getElementById("check").innerHTML = '<div class="alert alert-danger alert-dismissible" id="check"><button type="button" class="close" data-dismiss="alert">&times;</button>  This Email Is not regestered!  </div>';
+              setTimeout(function() {
+                document.getElementById("check").innerHTML = "";
+              }, 3000);
+            }
+            },
+            error: function() {}
+          })
+        });
+      });
+      </script>
+  <%- include('layouts/auth-footer'); -%>

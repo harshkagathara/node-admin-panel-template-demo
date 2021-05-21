@@ -1,0 +1,52 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form action="addon_update/<%= addon._id %>" method="POST">
+                            <div class="card-header">
+                                <h4>Edit Addond</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Select Restaurant  </label>
+                                    <select name="restaurant_id" class=" form-control">
+                                        <% for(var i=0; i<restaurant.length;i++) { %>
+                                            <option value="<%-restaurant[i]._id  %>"><%= restaurant[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Extra Name  </label>
+                                    <input type=text class="form-control" name=name id=name  value="<%=addon.name %>"  required/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Extra Category </label>
+                                    <select name="addons_category_id" class=" form-control">
+                                        <% for(var i=0; i<addonCategory.length;i++) { %>
+                                            <option value="<%-addonCategory[i]._id  %>"><%= addonCategory[i].name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Price </label>
+                                    <input type="number" class="form-control" name="price" id="price" value="<%=addon.price %>" step="1">
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%- include('layouts/footer'); -%>

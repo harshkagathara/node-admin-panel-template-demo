@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<div class="card-body">
+        <div class="tab-content" id="custom-tabs-three-tabContent">
+			<% Orders.forEach(Order => {%>
+            <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel"
+                aria-labelledby="custom-tabs-three-home-tab">
+                <!-- Main content -->
+		
+                <div class="invoice p-3 mb-3" id="invoice">
+                    <div class="row border-bottom">
+                        <div class="col-12 pb-2">
+                            <h4 class="text-muted">
+                                <i class="far fas fa-store"></i><%= Order.RestName %>
+    
+                            </h4>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- info row -->
+                    <div class="row">
+                        <div class="col-sm-1 invoice-col">
+                            From<br><br>
+							Full Name: <b><%= Order.UserFristName %> <%= Order.UserLastName %><br></b> 
+                            <address>
+                                <strong>Customer</strong><br>
+                                <%= Order.UserAddress %><br>
+                                Phone:  <%= Order.UserPhone %><br>
+                                Email: <%= Order.UserEmail %>
+                            </address>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-sm-1 invoice-col">
+                            To<br><br>
+                            <address>
+                                <strong><%= Order.RestName %></strong><br>
+								<%= Order.RestAddress %><br>
+								Phone:  <%= Order.RestPhone %><br>
+								Email: <%= Order.RestEmail %>
+                            </address>
+                        </div>
+						</div>
+                        <!-- /.col -->
+						<div class="row">
+                        <div class="col-sm-12 invoice-col">
+                            <b>Invoice #05-20-937AE9F5-0A56</b><br>
+                            <b><%= Order.OrderDate %></b><br>
+                            <br>
+                            <b>Order ID:</b><%= Order.OrderId %><br>
+                            <b>Order placed:</b><%= Order.Orderplace %><br>
+                            <b>Status:</b> <button type="button" class="btn btn-success btn-xs">ORDER PLACED</button>
+                        </div>
+						</div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+    
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Dish Name</th>
+                                        <th>Per Price</th>
+                                        <th>Qty</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> Bharwa Bhindi ,Dhokla</td>
+                                        <td>150.00</td>
+                                        <td>x 5</td>
+                                        <td>750.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+    
+                    <div class="row">
+                        <!-- accepted payments column -->
+                        <div class="col-6">
+                            <p class="lead">Payment Methods:</p>
+    
+                            <p class="text-muted well well-sm text-uppercase shadow-none font-weight-bold"
+                                style="margin-top: 10px;">
+                                COD
+                            </p>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+    
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr>
+                                        <th style="width:50%">Subtotal:</th>
+                                        <td>150.00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tax (5%)</th>
+                                        <td>18.30</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Delivery Charges:</th>
+                                        <td>40.00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Coupon Discount (-):</th>
+                                        <td>00.00</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total:</th>
+                                        <td>217.00</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+    
+                    <!-- this row will not appear when printing -->
+                   
+                </div>
+				<%	});%>
+                <!-- /.invoice -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

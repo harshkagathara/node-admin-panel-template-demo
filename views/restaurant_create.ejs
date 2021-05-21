@@ -1,0 +1,121 @@
+<%- include('layouts/header'); -%> 
+<%- include('layouts/navber'); -%>
+
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <form  method="POST" id="RestForm" enctype="multipart/form-data">
+                            <div class="card-header">
+                                <h4>Add New Restaurant</h4>
+                            </div>
+                            <div class="card-body">
+                            <div id="check"></div>
+                                <div class="form-group">
+                                    <label>Name </label>
+                                    <input type="text" class="form-control" name="name" id="name" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Description </label>
+                                    <input type="text" class="form-control" name="description" id="description"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Restaurant Owner</label>
+                                    <select class="form-control" name="user_id" id="user_id">
+                                        <% for(var i=0; i<users.length;i++) { %>
+                                            <option value="<%-users[i]._id  %>"><%= users[i].frist_name %></option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone </label>
+                                    <input type="text" class="form-control" name="phone" id="phone"/>
+                                </div>
+                                <div class="form-group">
+                                    <label>Email </label>
+                                    <input type="email" class="form-control" name="email" id="email" />
+                                </div>
+                                <div id="email-error"></div>
+                                <div class="form-group">
+                                    <label>Cuisine </label>
+                                    <select class="form-control" name="cuisine" id="cuisine">
+                                        <option>a</option>
+                                        <option>i</option>
+                                        <option>s</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Address </label>
+                                    <textarea class="form-control" name="address" id="address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Image </label>
+                                    <input type="file" class="form-control" name="image" id="image" required />
+                                </div>
+                            </div>
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                                <button class="btn btn-secondary" type="reset">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $("#RestForm").submit(function(event) {
+            event.preventDefault();
+		var address = $('#address').val();
+		var cuisine = $('#cuisine').val();
+		var email = $('#email').val();
+		var phone = $('#phone').val();
+		var user_id = $('#user_id').val();
+		var name = $('#name').val();
+        var description = $('#description').val();
+		var extension = $('#image').val().split('.').pop().toLowerCase();
+		if(extension != '') {
+			if(jQuery.inArray(extension, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+				alert("Invalid Image File");
+				$('#image').val('');
+				return false;
+			}
+		}
+       
+            $.ajax({
+              type: 'POST',
+              url: '/restaurant_save',
+              data: new FormData(this),
+              dataType: "json",
+              contentType: false,
+              processData: false,
+              success: function(response) {
+                if(response.Message == "Success!") {
+                  window.location.href = "/res_table";
+                }
+                else if (response.Message == "This Email is already in use"){
+                  document.getElementById("email-error").innerHTML = '<div class="alert alert-danger alert-dismissible" id="check"><button type="button" class="close" data-dismiss="alert">&times;</button>  Email is already used </div>';
+                  setTimeout(function() {
+                    document.getElementById("email-error").innerHTML = "";
+                  }, 5000);
+                }
+                else {
+          
+                  document.getElementById("check").innerHTML = '<div class="alert alert-danger alert-dismissible" id="check"><button type="button" class="close" data-dismiss="alert">&times;</button>password is not matched  </div>';
+                  setTimeout(function() {
+                    document.getElementById("check").innerHTML = "";
+                  }, 3000);
+                }
+              },
+              error: function() {}
+            })
+          });
+        });
+        </script>
+<%- include('layouts/footer'); -%>

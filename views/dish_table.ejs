@@ -1,0 +1,62 @@
+<%- include('layouts/header'); -%>
+    <%- include('layouts/navber'); -%>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h4>List of Dishes</h4>
+                   <a href="/dish_create" class="ml-auto"><button class="btn btn-info " style="border-radius: 5px;"><i class="fas fa-plus"></i> Add More</button></a>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-striped" id="table-1">
+                        <thead>
+                            <tr class="text-center">
+                              <th>Sr.No</th>
+                              <th>Image</th>
+                              <th>Name</th>
+                              <th>Restaurant Name</th>
+                              <th>Item Category</th>
+                              <th>Addon Category</th>
+                              <th>Price</th>
+                              <th>Edit</th>
+                              <th>Delete</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% for(var i=0; i<restaurantName.length;i++) { %>
+                          <tr class="text-center">
+                            <td><%= i+1; %></td>
+                            <td> <img alt="image" src="/uploads/Dish/<%=restaurantName[i].image%>" width="85"></td>
+                            <td><%= restaurantName[i].DishName %></td>
+                            <td><%= restaurantName[i].RestName %></td>
+                            <td><%= restaurantName[i].DishCateName %></td>
+                            <td><%= restaurantName[i].AddonCateName %></td>
+                            <td><%= restaurantName[i].Dish_price %></td>
+                            <td><a href="dish_edit/<%=restaurantName[i].Dish_id %>" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a></td>
+                            <td><a href="dish_delete/<%=restaurantName[i].Dish_id %>/<%=restaurantName[i].image %>" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                          </tr>
+                         <% } %>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            
+          </div>
+        </section>
+        
+      </div>
+
+      
+
+  <%- include('layouts/footer'); -%>
+
+
