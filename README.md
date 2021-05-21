@@ -8,6 +8,7 @@ Ajax <br>
 Image & Upload & Dalete <br>
 Seeding  <br>
 Join query <br>
+Generate pdf <br>
 Delete Cascade <br>
 topics of Node. 
 
