@@ -15,11 +15,6 @@ const OderSchema = mongoose.Schema({
     Order_placed: String,
     qty: Number,
     
-    dish_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'dishes',
-        required: true
-}, 
     restaurant_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'restaurant',
