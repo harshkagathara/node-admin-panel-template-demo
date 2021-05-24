@@ -5,6 +5,7 @@ const Addons = require('../Models/addon.model');
 const Dish = require('../Models/dish.model');
 const DishCategory = require('../Models/dishCate.model');
 const Coupons = require('../Models/coupons.model');
+const Order = require('../Models/order.model');
 
 
 require('../DB');
@@ -16,6 +17,7 @@ seedAddon();
 seedDish();
 seedDishCate();
 seedCoupon();
+seedOrder();
 
 
 //Restaurant Seed
@@ -429,3 +431,31 @@ for(var i = 0; i < Datas.length; i++) {
 }
 console.log("Coupons Colletion Seeded");
 }
+
+
+//order seed
+async function seedOrder(req, res) {
+	Order.remove({}, function() {
+		console.log('Order  Colletion Cleared');
+	});
+	var Datas = [
+		{
+			"_id": "60a71c6ed0be3235247aa739",
+			"amount": "1500",
+			"name": "kagu",
+			"qty": "5",
+			"Order_placed": "3 hours ago",
+			"Date": "1999/11/29",
+			"Time": "10:30",
+			"restaurant_id": "60a60d9e031bc32da8bda394",
+			"user_id": "609f6ccc0c196f0080605ec6"
+		}
+	];
+	for(var i = 0; i < Datas.length; i++) {
+		var newEvent = new Order(Datas[i]);
+		console.log(newEvent);
+		await newEvent.save();
+	}
+	console.log("Order Colletion Seeded");
+	}
+	
