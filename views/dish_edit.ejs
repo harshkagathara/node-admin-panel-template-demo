@@ -16,9 +16,12 @@
                                 <div class="form-group">
                                     <label>Select Restaurant  </label>
                                     <select name="restaurant_id" class=" form-control">
-                                        <% for(var i=0; i<restaurant.length;i++) { %>
-                                            <option value="<%-restaurant[i]._id  %>" <%= restaurant[i]._id.toString() == dish.restaurant_id.toString() ? 'selected' : '' %> ><%= restaurant[i].name %></option>
+
+                                        <% for(var i=0; i <restaurant.length; i++) { 
+                                            var selected = ( dish.restaurant_id.toString() == restaurant[i]._id.toString() ) ? "selected" : ""; %>
+                                            <option value="<%-restaurant[i]._id  %>" <%= selected %> ><%= restaurant[i].name%></option>
                                         <% } %>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -27,8 +30,13 @@
                                 </div>
                               
                                 <div class="form-group">
-                                    <label>Dish Description  </label>
-                                    <textarea class="form-control" name="description"><%= dish.description %></textarea>  
+                                    <label>Dish Description </label>
+                                    <textarea class="form-control" cols="80" id="description" name="description" rows="10" > <%= dish.description %> </textarea>
+                                    <script>
+                                        window.onload = function() {
+                                        CKEDITOR.replace('description');
+                                        };
+                                        </script>
                                 </div>
                                 <div class="form-group">
                                     <label>Price </label>
@@ -43,9 +51,10 @@
                                 <div class="form-group">
                                     <label>Dish Category </label>
                                     <select name="dish_category_id" class=" form-control">
-                                        <% for(var i=0; i<dishCategory.length;i++) { %>
-                                           <option value="<%-dishCategory[i]._id  %>" <%= dishCategory[i]._id.toString() == dish.dish_category_id.toString() ? 'selected' : '' %>  ><%= dishCategory[i].name %></option> 
-                                        <% } %> -->
+                                        <% for(var i=0; i < dishCategory.length; i++) { 
+                                            var selected = ( dish.dish_category_id.toString() == dishCategory[i]._id.toString() ) ? "selected" : ""; %>
+                                            <option value="<%-dishCategory[i]._id  %>" <%= selected %> ><%= dishCategory[i].name %></option>
+                                        <% } %>
                                     </select>
                                 </div>
                               

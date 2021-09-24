@@ -18,15 +18,12 @@
                                     <label>Name </label>
                                     <input type="text" class="form-control" name="name" id="name" required />
                                 </div>
-                                <div class="form-group">
-                                    <label>Description </label>
-                                    <input type="text" class="form-control" name="description" id="description"/>
-                                </div>
+                               
                                 <div class="form-group">
                                     <label>Restaurant Owner</label>
                                     <select class="form-control" name="user_id" id="user_id">
                                         <% for(var i=0; i<users.length;i++) { %>
-                                            <option value="<%-users[i]._id  %>"><%= users[i].frist_name %></option>
+                                            <option value="<%-users[i]._id  %>"><%= users[i].frist_name %> <%= users[i].last_name %></option>
                                         <% } %>
                                     </select>
                                 </div>
@@ -46,6 +43,15 @@
                                         <option>i</option>
                                         <option>s</option>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Description </label>
+                                    <textarea class="form-control" cols="80" id="description" name="description" rows="10" >  </textarea>
+                                    <script>
+                                        window.onload = function() {
+                                        CKEDITOR.replace('description');
+                                        };
+                                        </script>
                                 </div>
                                 <div class="form-group">
                                     <label>Address </label>

@@ -27,8 +27,13 @@
                                 </div>
                               
                                 <div class="form-group">
-                                    <label>Dish Description  </label>
-                                    <textarea class="form-control" name="description"></textarea>  
+                                    <label>Dish Description </label>
+                                    <textarea class="form-control" cols="80" id="description" name="description" rows="10" >  </textarea>
+                                    <script>
+                                        window.onload = function() {
+                                        CKEDITOR.replace('description');
+                                        };
+                                        </script>
                                 </div>
                                 <div class="form-group">
                                     <label>Price </label>

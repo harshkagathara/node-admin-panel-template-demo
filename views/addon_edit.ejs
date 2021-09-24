@@ -16,8 +16,9 @@
                                 <div class="form-group">
                                     <label>Select Restaurant  </label>
                                     <select name="restaurant_id" class=" form-control">
+
                                         <% for(var i=0; i<restaurant.length;i++) { %>
-                                            <option value="<%-restaurant[i]._id  %>"><%= restaurant[i].name %></option>
+                                            <option value="<%=restaurant[i]._id %>" <%= restaurant[i]._id.toString() == addon.restaurant_id.toString() ? 'selected' : '' %>  %>><%= restaurant[i].name %></option>
                                         <% } %>
                                     </select>
                                 </div>
